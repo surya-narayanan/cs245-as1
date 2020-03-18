@@ -1,0 +1,29 @@
+if (indexColumn == 0){
+             /*
+            / Checking if any of the values in the column are less than threshold
+          */
+            //getting the keys of the index to compare against the threshold
+            Set<Integer> keys = index.keySet();
+            //comparing against threshold
+            for(int elem : keys){
+                if(elem < threshold){
+                    // if so, iterate over the row indices for which that holds
+                    IntArrayList arr = index.get(elem);
+                    for(int i = 0; i < arr.size(); i++){
+                        int rowId = arr.getInt(i);
+                        int field = getIntField(rowId, 3) + getIntField(rowId, 2);
+                        putIntField(rowId, 3, field);
+                        count = count + 1;
+                    }
+                }
+            }
+        } else{
+            for (int rowId = 0; rowId < numRows; rowId++) {
+
+                if(getIntField(rowId, 0) < threshold){
+                    int field = getIntField(rowId, 3) + getIntField(rowId, 2);
+                    putIntField(rowId, 3, field);
+                    count = count + 1;
+                }
+            }
+        }

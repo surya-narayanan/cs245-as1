@@ -1,0 +1,29 @@
+public long predicatedAllColumnsSum(int threshold) {
+        // TODO: Implement this!
+        long sum = 0;
+        Set<Integer> keys = index.keySet();
+
+        if (indexColumn == 0){
+            for(int elem : keys){
+                if(elem > threshold){
+                    IntArrayList arr = index.get(elem);
+                    for(int i = 0; i < arr.size(); i++){
+                        for (int colId = 0; colId < numCols; colId++){
+                            sum  = sum + getIntField(arr.getInt(i), colId) ;
+                        }
+                    }
+                }
+            }
+        } else{
+
+            for (int rowId = 0; rowId < numRows; rowId++) {
+                for (int colId = 0; colId < numCols; colId++) {
+                    if (getIntField(rowId, 0) > threshold){
+                        sum = sum + getIntField(rowId,colId);
+                    }
+                }
+            }
+        }
+        // TODO : Done
+        return sum;
+    }

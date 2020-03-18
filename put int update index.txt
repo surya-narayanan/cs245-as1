@@ -1,0 +1,45 @@
+if(colId == 0){
+
+            IntArrayList old_index_arr = index_col_zero.get(was);
+            old_index_arr.rem(rowId);
+
+            if(index_col_zero.containsKey(field)){
+                IntArrayList list = index_col_zero.get(field);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_zero.put(field, newlist);
+            }
+        }
+
+
+        if(colId == 1) {
+
+            IntArrayList old_index_arr = index_col_one.get(was);
+            old_index_arr.rem(rowId);
+
+            if (index_col_one.containsKey(field)) {
+                IntArrayList list = index_col_one.get(field);
+                list.add(rowId);
+            } else {
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_one.put(field, newlist);
+            }
+        }
+
+        if(colId == 2){
+
+            IntArrayList old_index_arr = index_col_two.get(was);
+            old_index_arr.rem(rowId);
+
+            if(index_col_two.containsKey(field)){
+                IntArrayList list = index_col_two.get(field);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_two.put(field, newlist);
+            }
+        }

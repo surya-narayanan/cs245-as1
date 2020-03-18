@@ -43,3 +43,4 @@ public class PredicatedAllColumnsSumTest {
         assertEquals(166, it.predicatedAllColumnsSum(3));
     }
 }
+

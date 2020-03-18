@@ -63,6 +63,33 @@ public abstract class CustomTableBenchAbstract {
                 table.putIntField(randRowIdx, colIdx, randVal);
             }
         }
+
+        long startTime = System.currentTimeMillis();
+        table.columnSum();
+        long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: columnSum: " + (endTime - startTime));
+
+        int randomThreshold = random.nextInt(upperBoundColumnValue);
+
+        startTime = System.currentTimeMillis();
+        table.predicatedUpdate(randomThreshold);
+        endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: predicatedUpdate: " + (endTime - startTime));
+
+        int randomThreshold1 = random.nextInt(upperBoundColumnValue);
+        int randomThreshold2 = random.nextInt(upperBoundColumnValue);
+
+        startTime = System.currentTimeMillis();
+        table.predicatedColumnSum(randomThreshold1, randomThreshold2);
+        endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: predicatedColumnSum: " + (endTime - startTime));
+
+        startTime = System.currentTimeMillis();
+        int randomThreshold4 = random.nextInt(upperBoundColumnValue);
+        table.predicatedAllColumnsSum(randomThreshold4);
+        endTime = System.currentTimeMillis();
+        System.out.println("Total execution time: predicatedAllColumnsSum: " + (endTime - startTime));
+
         return finalResult;
     }
 }

@@ -41,7 +41,7 @@ public class PredicatedUpdateBench implements TableBenchmark{
 
         rt = new RowTable();
         ct = new ColumnTable();
-        it = new IndexedRowTable(0);
+        it = new IndexedRowTable(1);
         rt.load(dl);
         ct.load(dl);
         it.load(dl);

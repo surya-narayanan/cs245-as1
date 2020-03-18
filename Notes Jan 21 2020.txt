@@ -1,0 +1,11 @@
+column sum - column table
+
+predicated all column sum - row 
+
+predicated column sum - index table 
+
+update bench - index
+
+
+In the order of row table, column table and index table.
+

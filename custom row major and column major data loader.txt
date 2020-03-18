@@ -1,0 +1,128 @@
+{
+
+        /*
+        * Row Store
+        *================================================================================================================
+        *================================================================================================================
+        */
+        this.numCols = loader.getNumCols();
+        List<ByteBuffer> row_store_rows = loader.getRows();
+        numRows = row_store_rows.size();
+        this.row_store_rows = ByteBuffer.allocate(ByteFormat.FIELD_LEN * numRows * numCols);
+
+        for (int rowId = 0; rowId < numRows; rowId++) {
+            ByteBuffer curRow = row_store_rows.get(rowId);
+            for (int colId = 0; colId < numCols; colId++) {
+                int offset = ByteFormat.FIELD_LEN * ((rowId * numCols) + colId);
+                this.row_store_rows.putInt(offset, curRow.getInt(ByteFormat.FIELD_LEN * colId));
+            }
+        }
+        /*
+         * Row Store
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        /*
+         * Column Store
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        List<ByteBuffer> column_store_rows = loader.getRows();
+        numRows = column_store_rows.size();
+        this.column_store_columns = ByteBuffer.allocate(ByteFormat.FIELD_LEN*numRows*numCols);
+
+        for (int rowId = 0; rowId < numRows; rowId++) {
+            ByteBuffer curRow = column_store_rows.get(rowId);
+            for (int colId = 0; colId < numCols; colId++) {
+                int offset = ByteFormat.FIELD_LEN * ((colId * numRows) + rowId);
+                this.column_store_columns.putInt(offset, curRow.getInt(ByteFormat.FIELD_LEN*colId));
+            }
+        }
+
+        /*
+         * Column Store
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        /*
+         * Index on column 0
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        index_col_zero = new TreeMap<Integer, IntArrayList>();
+
+        for (int rowId = 0; rowId < numRows; rowId++){
+            int elem = getIntField(rowId, 0);
+            if(index_col_zero.containsKey(elem)){
+                IntArrayList list = index_col_zero.get(elem);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_zero.put(elem, newlist);
+            }
+        }
+
+        /*
+         * Index on column 0
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        /*
+         * Index on column 1
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        index_col_one = new TreeMap<Integer, IntArrayList>();
+
+        for (int rowId = 0; rowId < numRows; rowId++){
+            int elem = getIntField(rowId, 1);
+            if(index_col_one.containsKey(elem)){
+                IntArrayList list = index_col_one.get(elem);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_one.put(elem, newlist);
+            }
+        }
+
+        /*
+         * Index on column 1
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        /*
+         * Index on column 2
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+        index_col_two = new TreeMap<Integer, IntArrayList>();
+
+        for (int rowId = 0; rowId < numRows; rowId++){
+            int elem = getIntField(rowId, 2);
+            if(index_col_two.containsKey(elem)){
+                IntArrayList list = index_col_two.get(elem);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_two.put(elem, newlist);
+            }
+        }
+
+        /*
+         * Index on column 2
+         *================================================================================================================
+         *================================================================================================================
+         */
+
+    }

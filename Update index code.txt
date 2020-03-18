@@ -1,0 +1,42 @@
+
+    public void update_zero_index(){
+        /*=========================================================
+         */
+        index_col_zero.clear();
+
+        for (int rowId = 0; rowId < numRows; rowId++){
+            int elem = getIntField(rowId, 0);
+            if(index_col_zero.containsKey(elem)){
+                IntArrayList list = index_col_zero.get(elem);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index_col_zero.put(elem, newlist);
+            }
+        }
+        /* ========================================================
+         */
+
+    }
+
+    public void updateindex(){
+        /*=========================================================
+         */
+        index.clear();
+
+        for (int rowId = 0; rowId < numRows; rowId++){
+            int elem = getIntField(rowId, indexColumn);
+            if(index.containsKey(elem)){
+                IntArrayList list = index.get(elem);
+                list.add(rowId);
+            } else{
+                IntArrayList newlist = new IntArrayList();
+                newlist.add(rowId);
+                index.put(elem, newlist);
+            }
+        }
+        /* ========================================================
+         */
+
+    }

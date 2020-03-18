@@ -1,0 +1,19 @@
+public int predicatedUpdate(int threshold) {
+        int count = 0;
+        Set<Integer> keys = index_col_zero.keySet();
+        for (int elem : keys) {
+            if (elem < threshold) {
+                IntArrayList arr = index.get(elem);
+                //count = count + arr.size();
+
+                for (int i = 0; i < arr.size(); i++) {
+                    int rowId = arr.getInt(i);
+                    int field = getIntField(rowId, 3) + getIntField(rowId, 2);
+                    putIntField(rowId, 3, field);
+                    count = count + 1;
+                }
+            }
+        }
+
+        return count;
+    }

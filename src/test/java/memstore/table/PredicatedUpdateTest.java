@@ -21,6 +21,7 @@ public class PredicatedUpdateTest {
                 5
         );
     }
+    /*
 
     @Test
     public void testRowTable() throws IOException {
@@ -35,6 +36,8 @@ public class PredicatedUpdateTest {
         ct.load(dl);
         assertEquals(9, ct.predicatedUpdate(3));
     }
+    */
+
 
     @Test
     public void testIndexedTable() throws IOException {
